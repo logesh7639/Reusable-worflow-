@@ -1,17 +1,15 @@
-name: GitHub Context Demo
+name: Runner Context Demo
 
 on:
   workflow_dispatch:
 
 jobs:
-  context-demo:
+  runner-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display GitHub Context
+      - name: Display Runner Information
         run: |
-          echo "Repository: ${{ github.repository }}"
-          echo "Workflow: ${{ github.workflow }}"
-          echo "Actor: ${{ github.actor }}"
-          echo "Branch: ${{ github.ref_name }}"
-          echo "Commit SHA: ${{ github.sha }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Runner Architecture: ${{ runner.arch }}"
+          echo "Runner Temp: ${{ runner.temp }}"
