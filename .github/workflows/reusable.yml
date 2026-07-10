@@ -1,12 +1,19 @@
-name: Reusable Workflow
+name: Matrix Demo
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
-  hello:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Say Hello
-        run: echo "Hello from the reusable workflow!"
+      - name: Display Operating System
+        run: echo "Running on ${{ matrix.os }}"
