@@ -3,13 +3,14 @@ name: Environment Variables Demo
 on:
   workflow_dispatch:
 
-env:
-  APP_NAME: GH200-Lab
-
 jobs:
   env-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display Environment Variable
-        run: echo "Application: ${{ env.APP_NAME }}"
+      - name: Step 1
+        run: echo "Build"
+
+      - name: Cleanup
+        if: always()
+        run: echo "Cleanup always runs."
