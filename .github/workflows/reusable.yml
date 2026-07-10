@@ -1,16 +1,22 @@
-name: Environment Variables Demo
+name: Job Output Demo
 
 on:
   workflow_dispatch:
 
 jobs:
-  env-demo:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.app_version }}
+
+    steps:
+      - id: version
+        run: echo "app_version=1.0.0" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Step 1
-        run: echo "Build"
-
-      - name: Cleanup
-        if: always()
-        run: echo "Cleanup always runs."
+      - run: echo "Deploying version ${{ needs.build.outputs.version }}"
