@@ -1,19 +1,17 @@
-name: Matrix Demo
+name: GitHub Context Demo
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-
-    runs-on: ${{ matrix.os }}
+  context-demo:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Display Operating System
-        run: echo "Running on ${{ matrix.os }}"
+      - name: Display GitHub Context
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
