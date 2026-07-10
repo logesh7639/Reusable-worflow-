@@ -1,15 +1,15 @@
-name: Runner Context Demo
+name: Environment Variables Demo
 
 on:
   workflow_dispatch:
 
+env:
+  APP_NAME: GH200-Lab
+
 jobs:
-  runner-demo:
+  env-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display Runner Information
-        run: |
-          echo "Runner OS: ${{ runner.os }}"
-          echo "Runner Architecture: ${{ runner.arch }}"
-          echo "Runner Temp: ${{ runner.temp }}"
+      - name: Display Environment Variable
+        run: echo "Application: ${{ env.APP_NAME }}"
